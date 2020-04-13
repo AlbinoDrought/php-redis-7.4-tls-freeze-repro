@@ -1,0 +1,15 @@
+version: "2"
+services:
+  php:
+    image: webdevops/php:7.4
+    working_dir: /app
+    volumes:
+      - ./:/app:ro
+    depends_on:
+      - redis-tls
+    command: /app/run-repro.sh
+
+  redis-tls:
+    image: madflojo/redis-tls
+    volumes:
+      - ./redis-certs:/certs:ro
